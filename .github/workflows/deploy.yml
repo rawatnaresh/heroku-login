@@ -10,5 +10,8 @@ jobs:
     - uses: actions/checkout@v1
   
     - name: Release App
-      run: | 
+      run: |
+        echo machine api.heroku.com >> ~/.netrc
+        echo "  login ${{ secrets.EMAIL }}" >> ~/.netrc 
+        echo "  password ${{ secrets.API }}" >> ~/.netrc 
         heroku container:release web --app brainb
